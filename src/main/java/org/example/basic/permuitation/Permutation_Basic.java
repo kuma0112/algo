@@ -1,4 +1,4 @@
-package org.example.basic.permitation;
+package org.example.basic.permuitation;
 
 import java.util.Arrays;
 
@@ -13,14 +13,14 @@ public class Permutation_Basic {
     }
     static int index = 1;
     static void perm(int tgtIdx) {
+        // 기저조건
+        if (tgtIdx == tgt.length) {
+            System.out.println(Arrays.toString(tgt) + index);
+            index ++;
+            return;
+        }
 
         for (int i = 0; i < src.length; i++) {
-            // 기저조건
-            if (tgtIdx == tgt.length) {
-                System.out.println(Arrays.toString(tgt) + index);
-                index ++;
-                return;
-            }
             if(select[i]) continue;
             tgt[tgtIdx]  = src[i];
             select[i] = true;

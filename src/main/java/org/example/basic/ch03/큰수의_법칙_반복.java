@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 // 이후
 // 1. 반복 -> 하나씩 하나씩...
 // 2. 반복 횟수를 미리 다 구함.
-public class 큰수의_법칙 {
+public class 큰수의_법칙_반복 {
     public static void main(String[] args) throws IOException {
 
 /*
@@ -27,22 +27,31 @@ public class 큰수의_법칙 {
         int K = Integer.parseInt(st.nextToken());
         int[] array = new int[N];
 
+        str = br.readLine();
+        st = new StringTokenizer(str);
         for (int i = 0; i < N; i++) {
             array[i] = Integer.parseInt(st.nextToken());
         }
+
         Arrays.sort(array);
         int first = array[N-1];
         int second = array[N-2];
 
-//        int a = ((M / K) * K) * first;
-//        int b = (M % K) * second;
+        // m개가 될 때까지 가장 큰 수를 k번 사용 + 두 번째 수 1번 사용 ....이 m번될 때까지
+        int result = 0;
+        int totalCnt = 0;
+        int kCnt = 0;
 
-        int cnt = (M / (K + 1)) * K + (M % (K + 1));
-        int result = cnt * first + (M - cnt) * second;
-
-//        int cnt = (m / (k + 1)) * k;
-//        cnt += m % (k + 1);
-
+        while (totalCnt != M) {
+            if (kCnt == K) { // 가장 큰 수를 k번 연속 사용한 상태라면
+                result += second;
+                kCnt = 0;
+            } else {
+                result += first;
+                kCnt++;
+            }
+            totalCnt++;
+        }
         System.out.println(result);
     }
 }

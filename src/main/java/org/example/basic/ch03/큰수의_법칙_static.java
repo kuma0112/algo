@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class 큰수의_법칙_3 {
+public class 큰수의_법칙_static {
     // static 변수는 재귀호출에서 공유할 수 있고
-    // local 변수 대비 반복 테스트케이스가 있는 경우, 각 테이스케이스 별로 초기화 해줘야 한다. 
+    // local 변수 대비 반복 테스트케이스가 있는 경우, 각 테이스케이스 별로 초기화 해줘야 한다.
     static int N, M, K, result;
     static int[] array;
     public static void main(String[] args) throws IOException {

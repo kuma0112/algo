@@ -1,22 +1,18 @@
 package org.example.basic.ch03;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class 큰수의_법칙_static {
-    // static 변수는 재귀호출에서 공유할 수 있고
-    // local 변수 대비 반복 테스트케이스가 있는 경우, 각 테이스케이스 별로 초기화 해줘야 한다.
+public class 큰수의_법칙_fileReader {
     static int N, M, K, result;
     static int[] array;
     public static void main(String[] args) throws IOException {
-
-/*
-5 8 3
-2 4 5 4 6
- */
+        // 파일 읽는 방법!
+        System.setIn(new FileInputStream("input2.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine(); // "5 8 3"
@@ -26,6 +22,7 @@ public class 큰수의_법칙_static {
         K = Integer.parseInt(st.nextToken());
         array = new int[N];
 
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
             array[i] = Integer.parseInt(st.nextToken());
         }

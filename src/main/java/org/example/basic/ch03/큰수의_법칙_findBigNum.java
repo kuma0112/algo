@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class 큰수의_법칙_fileReader {
+public class 큰수의_법칙_findBigNum {
     static int N, M, K, result;
     static int[] array;
     public static void main(String[] args) throws IOException {
@@ -26,30 +26,55 @@ public class 큰수의_법칙_fileReader {
         for (int i = 0; i < N; i++) {
             array[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(array);
-        int first = array[N-1];
-        int second = array[N-2];
 
-//        int a = ((M / K) * K) * first;
-//        int b = (M % K) * second;
+        // O(NlogN)
+//        Arrays.sort(array);
+
+
+//        // first와 second는 동일할 수 있다.
+//        int first = 0;
+//        int second = 0;
+//
+//        for (int i = 0; i < N; i++) {
+//            if (array[i] > first) {
+//                second = first;
+//                first = array[i];
+//            } else if (array[i] > second) {
+//                second = array[i];
+//            }
+//        }
+
+        int first = first();
+        int second = second();
 
         int cnt = (M / (K + 1)) * K + (M % (K + 1));
         result = cnt * first + (M - cnt) * second;
 
-//        int cnt = (m / (k + 1)) * k;
-//        cnt += m % (k + 1);
 
-        // 가장 큰 수가 더해지는 횟수 계산
-        // 큰 수 F 두 번째 수 S
-        // m이 8이고, k가 3이라면
-        // FFFS-FFFS
-        // (M / (K+1)) * K -> F가 사용된 횟수
-
-        // 만약 m이 10이라면
-        // FFFS-FFFS-FF
-        // (M / (K+1)) * K + (M % (K+1)) -> F가 사용된 횟수 -> cnt
-        // M - cnt -> S가 사용된 횟수
 
         System.out.println(result);
+    }
+
+    static int first() {
+        int first = 0;
+        int firstIndex = 0;
+        for (int i = 0; i < N; i++) { // 가장 큰 수가 중복되어도 맨 앞의 수가 가장 큰 수로 처리되도록
+            if (array[i] > first) {
+                first = array[i];
+                firstIndex = i;
+            }
+        }
+        array[firstIndex] = 0; // 가장 큰 수를 0으로 만들어 버림
+        return first;
+    }
+
+    static int second() {
+        int second = 0;
+        for (int i = 0; i < N; i++) {
+            if (array[i] > second) {
+                second = array[i];
+            }
+        }
+        return second;
     }
 }
