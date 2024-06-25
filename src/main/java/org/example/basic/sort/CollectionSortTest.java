@@ -21,7 +21,7 @@ public class CollectionSortTest {
 
 
 
-    static class Item implements Comparable<ArraySortTest.Item>{
+    static class Item implements Comparable<Item>{
         int itemId;
         String itemName;
 
@@ -36,7 +36,7 @@ public class CollectionSortTest {
         }
 
         @Override
-        public int compareTo(ArraySortTest.Item o) {
+        public int compareTo(Item o) {
 //            // itemId를 asc로 정렬하고 싶다면?
 //            return this.itemId - o.itemId;
 //            // 음수가 나오면 this가 앞. 반대로 하려면 순서 바꾸거나 전체 마이너스 처리.
