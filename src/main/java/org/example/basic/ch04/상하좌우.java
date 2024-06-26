@@ -11,7 +11,6 @@ public class 상하좌우 {
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int sizeOfMap = Integer.parseInt(br.readLine());
-        int[][] map = new int[sizeOfMap][sizeOfMap];
         int x = 1;
         int y = 1;
         String str = br.readLine(); // r r r u d d
