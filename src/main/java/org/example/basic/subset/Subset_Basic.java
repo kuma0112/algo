@@ -25,7 +25,7 @@ public class Subset_Basic {
 
     static void printSubset(){
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < select.length; i++) {
+        for (int i = 0; i < src.length; i++) {
             if (select[i]) {
                 sb.append(src[i]).append(" ");
             }
