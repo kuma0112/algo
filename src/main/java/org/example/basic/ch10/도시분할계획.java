@@ -3,6 +3,7 @@ package org.example.basic.ch10;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class 도시분할계획 {
@@ -26,7 +27,7 @@ public class 도시분할계획 {
             edges[i] = new Edge(v1, v2, c);
         }
 
-        Arrays.sort(edges, (e1, e2) -> e1.c - e2. c);
+        Arrays.sort(edges, Comparator.comparingInt(e -> e.c));
         System.out.println(Arrays.toString(edges));
 
         makeSet();
