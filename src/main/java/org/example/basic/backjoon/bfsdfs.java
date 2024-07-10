@@ -45,7 +45,7 @@ public class bfsdfs {
 
     static void dfs(int start){
         visited[start] = true;
-        System.out.println(start + " ");
+        System.out.print(start + " ");
 
         for (int next : adjList.get(start)) {
             if (!visited[next]) {
@@ -61,7 +61,7 @@ public class bfsdfs {
 
         while (!queue.isEmpty()) {
             int current = queue.poll();
-            System.out.println(current + " ");
+            System.out.print(current + " ");
 
             for (int next : adjList.get(current)) {
                 if (!visited[next]) {
