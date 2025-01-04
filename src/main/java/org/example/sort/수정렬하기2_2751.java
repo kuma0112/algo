@@ -15,33 +15,27 @@ public class 수정렬하기2_2751 {
             arr[i] = Integer.parseInt(br.readLine());
         }
 
-        // 선택정렬
-        selectionSort(arr);
+        // 삽입정렬
+        insertionSort(arr);
 
         for (int i = 0; i < n; i++) {
             System.out.println(arr[i]);
         }
     }
 
-    static void selectionSort(int[] arr) {
-        int min;
-        int minIdx;
-        for (int i = 0; i < arr.length; i++) {
-            min = arr[i];
-            minIdx = i;
-            for (int j = i+1; j < arr.length; j++) {
-                if (arr[j] < min) {
-                    min = arr[j];
-                    minIdx = j;
-                }
+    static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int num = arr[i];
+            int j = i-1;
+
+            while(j >= 0 && arr[j] > num) {
+                arr[j+1] = arr[j]; // 오른쪽으로 한칸 이동
+                j--;
             }
-            swap(i, minIdx);
+            // 만약 arr[j]가 num보다 크지 않으면
+            // 바로 그 숫자 오른쪽, 즉 arr[j+1]에 num을 삽입
+            arr[j+1] = num;
         }
     }
 
-    static void swap(int a, int b) {
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
-    }
 }
