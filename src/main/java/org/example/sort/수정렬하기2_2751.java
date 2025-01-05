@@ -1,14 +1,13 @@
 package org.example.sort;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class 수정렬하기2_2751 {
     static int[] arr;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
         arr = new int[n];
         for (int i = 0; i < n; i++) {
@@ -19,8 +18,11 @@ public class 수정렬하기2_2751 {
         quickSort(0, n-1);
 
         for (int i = 0; i < n; i++) {
-            System.out.println(arr[i]);
+            bw.write(arr[i] + "\n");
         }
+
+        bw.flush();
+        bw.close();
     }
 
     static void quickSort(int left, int right) {
@@ -35,17 +37,17 @@ public class 수정렬하기2_2751 {
     }
 
     static int partition(int left, int right) {
-        int pivot = arr[right];
-        int i = left -1; // 피벗보다 작은 요소를 위한 가상 인덱스?
+        int pivot = arr[left];
+        int i = left;
 
-        for (int j = left; j < right; j++) {
+        for (int j = left+1; j <= right; j++) {
             if (arr[j] <= pivot) {
                 i++;
                 swap(i, j);
             }
         }
-        swap(i+1, right);
-        return i+1;
+        swap(left, i);
+        return i;
     }
 
     static void swap(int a, int b) {
