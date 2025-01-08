@@ -3,7 +3,13 @@ package org.example.sort;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
+
+/**
+ * 서류 순으로 정렬한 뒤, 면접 순으로 min 값을 갱신해가면서 확인하는 방식.
+ * 아예 입력 받을 때 정렬하면서 받는 방식도 생각해 볼 것.
+ */
 
 public class 신입사원_1946 {
     static int N;
@@ -28,20 +34,19 @@ public class 신입사원_1946 {
 
     static int solution(int[][] array, int M) {
         int answer= 0;
-        for (int i = 0; i < M; i++) {
-            int a = array[i][0];
-            int b = array[i][1];
 
-            boolean flag = true;
-            for (int j = 0; j < M; j++) {
-                if (j != i) {
-                    if (array[j][0] - a < 0 && array[j][1] - b < 0) {
-                        flag = false;
-                    }
-                }
+        Arrays.sort(array, (o1, o2) -> {
+            if (o1[0] == o2[0]) {
+                return o1[1] - o2[1];
             }
+            return o1[0] - o2[0];
+        });
 
-            if (flag) {
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < M; i++) {
+            if (min > array[i][1]) {
+                min = array[i][1];
                 answer++;
             }
         }
