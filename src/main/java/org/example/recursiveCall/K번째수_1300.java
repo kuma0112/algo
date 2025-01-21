@@ -11,16 +11,21 @@ public class K번째수_1300 {
         N = Integer.parseInt(br.readLine());
         M = Integer.parseInt(br.readLine());
 
-        System.out.println(binarySearch(1, N*N));
+        System.out.println(binarySearch(1, M));
     }
 
     static int binarySearch(int start, int end) {
         int answer = 0;
-        int mid;
 
         while (start <= end) {
-            mid = (start + end) / 2;
+            int mid = (start + end) / 2;
             int count = 0;
+            /**
+             * 1 2 3 -> 5 , 3 -> 3         1*1 1*2 1*3
+             * 2 4 6 -> 2, 3 -> 2
+             * 3 6 9 -> 1, 3 -> 1          3*1 3*2 3*3
+             * 5/3 = 1.xxxx
+             */
             for (int i = 1; i <= N ; i++) {
                 count += Math.min(mid/i, N);
             }
