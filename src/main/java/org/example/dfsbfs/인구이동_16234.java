@@ -27,19 +27,27 @@ public class 인구이동_16234 {
         }
 
         count = 0;
+        // 더 이상 인구이동이 없을 때까지 인구이동 계속
         while(true) {
+            // 초기화
             visited = new boolean[N][N];
+            // 인구이동 있는지 없는지를 체크
             boolean isMoved = false;
+            // 모든 칸을 다 돌면서, bfs로 연결된, 즉 '연합'이 있는지 없는지 완탐
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
+                    // 방문한 칸은 다시 가지 않음
                     if (!visited[i][j]) {
+                        // 연합 있나요? -> 네네 -> isMoved가 true
                         if (findUnion(new Node(i, j, map[i][j]))) {
                             isMoved = true;
                         }
                     }
                 }
             }
+            // 더 이상 인구이동 없으면 while문 멈춤
             if (!isMoved) { break; }
+            // 인구이동 날짜 1일 증가
             count++;
         }
 
@@ -54,6 +62,7 @@ public class 인구이동_16234 {
         union.add(start);
         visited[start.r][start.c] = true;
 
+        // 일단 이 칸은 인구이동이 있을 것이라고 가정하고 시작
         int total = map[start.r][start.c];
         int countries = 1;
 
@@ -83,6 +92,8 @@ public class 인구이동_16234 {
             }
         }
 
+        // 연합이 자기 자신밖에 없다? -> 연합을 찾지 못했다라는 뜻
+        // countries가 2이상인 경우만 인구이동을 진행
         if (countries > 1) {
             int newPopulation = total / countries;
             for (Node node : union) {
